@@ -305,4 +305,16 @@ class MyDynamicArrayTest {
         Throwable exception = assertThrows(IllegalStateException.class, () -> myDynamicArray.removeAt(index_to_remove));
         assertEquals("Array is empty", exception.getMessage());
     }
+
+    @Test
+    void indexOf_should_return_correct_index() {
+        myDynamicArray.add(1);
+        assertEquals(0, myDynamicArray.indexOf(1));
+    }
+
+    @Test
+    void indexOf_should_return_negative_one_when_element_not_found() {
+        //myDynamicArray.add(1);
+        assertEquals(-1, myDynamicArray.indexOf(2));
+    }
 }

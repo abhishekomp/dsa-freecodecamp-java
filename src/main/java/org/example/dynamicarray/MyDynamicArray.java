@@ -169,6 +169,15 @@ public class MyDynamicArray {
         return data;
     }
 
+    public int indexOf(int element) {
+        for(int i = 0; i < len; i++) {
+            if(arr[i] == element){
+                return i;
+            }
+        }
+        return -1;
+    }
+
     /**
      * Prints the array on terminal
      */
