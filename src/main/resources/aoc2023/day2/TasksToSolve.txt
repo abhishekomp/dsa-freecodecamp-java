@@ -1,0 +1,25 @@
+Part 1 Task: Given the game line (sentence), get the game id (game number) before the colon sign
+Status: Done
+Method: public int getGameId(String input)
+=========================================
+Part 1 Task: Given the game line (sentence)
+Example:
+Game 1: 3 blue, 4 red; 1 red, 2 green, 6 blue; 2 green
+Task Description: Extract the game description.
+Status: Done
+Method: public String getGameDescription(String input)
+=========================================
+Part 1 Task: Given the game description (3 blue, 4 red; 1 red, 2 green, 6 blue; 2 green) extract the list of rounds.
+Example:
+Game description: 3 blue, 4 red; 1 red, 2 green, 6 blue; 2 green
+Task Description: Extract the list of rounds for the game. This game has 3 rounds with each round separated by a semicolon.
+Expected result is a list of Strings with each string representing a single round.
+Status: Done
+Method: public List<String> getRoundsPerGame
+=========================================
+Part 1 Task: Given a single round of a game, check if the configuration of the round is valid.
+Example round: 3 blue, 4 red
+Constraint: The bag contained only 12 red cubes, 13 green cubes, and 14 blue cubes.
+Logic: Validate the count of each color balls against the allowed count for that color.
+=========================================
+
