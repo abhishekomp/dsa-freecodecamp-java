@@ -49,6 +49,40 @@ public class Game {
         return gamePossible;
     }
 
+    public Double getMaxBallsAndPower(){
+        GameUtils gameUtils = new GameUtils();
+        List<String> gameRounds = gameUtils.getRoundsPerGame(gameDescription);
+        int redMax = getMaxBallsUsingColor(gameRounds, "red");
+        int greenMax = getMaxBallsUsingColor(gameRounds, "green");
+        int blueMax = getMaxBallsUsingColor(gameRounds, "blue");
+        //System.out.println("power = " + power);
+        return (double) redMax * (double) greenMax * (double) blueMax;
+    }
+
+    private int getMaxBallsUsingColor(List<String> gameRounds, String color) {
+        int count = 0;
+        if("red".equals(color)){
+            return gameRounds.stream()
+                    .map(GameRound::new)
+                    .mapToInt(GameRound::getRedCnt)
+                    .max()
+                    .orElse(0);
+        } else if ("blue".equals(color)) {
+            return gameRounds.stream()
+                    .map(GameRound::new)
+                    .mapToInt(GameRound::getBlueCnt)
+                    .max()
+                    .orElse(0);
+        } else if ("green".equals(color)) {
+            return gameRounds.stream()
+                    .map(GameRound::new)
+                    .mapToInt(GameRound::getGreenCnt)
+                    .max()
+                    .orElse(0);
+        }
+        return count;
+    }
+
     @Override
     public String toString() {
         return "Game{" +

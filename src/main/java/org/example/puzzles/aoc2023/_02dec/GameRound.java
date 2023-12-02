@@ -24,6 +24,18 @@ public class GameRound {
         this.greenCnt = evaluateConfiguration(gameRoundString, "green");
     }
 
+    public int getRedCnt() {
+        return redCnt;
+    }
+
+    public int getBlueCnt() {
+        return blueCnt;
+    }
+
+    public int getGreenCnt() {
+        return greenCnt;
+    }
+
     // 3 blue, 4 red
     // 2 green
     // 3 green, 4 blue, 1 red
