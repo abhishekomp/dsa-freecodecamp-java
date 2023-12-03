@@ -102,6 +102,9 @@ public class ReadTextFile {
         }
     }
 
+    /*
+    Reads each line from a text file and returns a list of string with each string being a single line from the file
+     */
     public List<String> readTextFileFromResources(String dirName, String fileName) {
         String path = dirName.concat("/").concat(fileName);
         return readTextFileFromResources(path);
