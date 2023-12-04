@@ -102,11 +102,18 @@ public class ReadTextFile {
         }
     }
 
-    /*
-    Reads each line from a text file and returns a list of string with each string being a single line from the file
+    /**
+     * Reads each line from a text file and returns a list of string with each string being a single line from the file
+     *
+     * @param dirName the directory name inside the resources directory
+     * @param fileName name of the file
+     * @return List<String> A list of string with each string being a single line from the file
+     * //@throws ApiException the api exception
      */
     public List<String> readTextFileFromResources(String dirName, String fileName) {
-        String path = dirName.concat("/").concat(fileName);
+        //String path = dirName.concat("/").concat(fileName);   //works on Windows 10
+        String path = dirName + File.separator + fileName;    //works on Windows 10
+        //String path = dirName.concat(File.separator).concat(fileName);  //works on Windows 10
         return readTextFileFromResources(path);
     }
 }
