@@ -17,6 +17,12 @@ public class Card {
         this.playersNumbers = playersNumbers;
     }
 
+    public Card(Card origCard){
+        this.id = origCard.getId();
+        this.winningNumbers = new ArrayList<>(origCard.getWinningNumbers());
+        this.playersNumbers = new ArrayList<>(origCard.getPlayersNumbers());
+    }
+
     public int getId() {
         return id;
     }
@@ -29,6 +35,9 @@ public class Card {
         return playersNumbers;
     }
 
+    /*
+    This method gives the count of winning number for the card.
+     */
     public List<Integer> winningNumbersWithPlayer(){
         List<Integer> winningNumbersWithPlayer = new ArrayList<>(playersNumbers);
         winningNumbersWithPlayer.retainAll(winningNumbers);

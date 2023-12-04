@@ -2,14 +2,13 @@ package org.example.puzzles.aoc2023._04dec;
 
 import org.example.puzzles.aoc2023.utils.ReadTextFile;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
+import java.util.function.Function;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import java.util.stream.Stream;
 
-import static java.util.stream.Collectors.toList;
+import static java.util.stream.Collectors.*;
 
 public class AOC04Dec2023 {
 
@@ -108,15 +107,58 @@ public class AOC04Dec2023 {
                 .mapToDouble(Card::getWorthPoint)
                 .sum();
     }
-
+    /*
+    This was tricky part of this puzzle but interesting.
+     */
+    public void playGamePart2(String dirName, String fileName){
+        List<String> lines = readFile(dirName, fileName);
+        List<Card> initialCardList = createCardListFromListOfString(lines);
+        initialCardList.forEach(System.out::println);
+        Map<Integer, Integer> playableCardNumberCountMap = initialCardList.stream()
+                .collect(groupingBy(Card::getId, LinkedHashMap::new, collectingAndThen(counting(), Long::intValue)));
+        //playableCardNumberCountMap.forEach((k,v) -> System.out.println(k + "->" + v));
+        Map<Integer, Integer> wonCardNumberCountMap = new LinkedHashMap<>(playableCardNumberCountMap);
+        wonCardNumberCountMap.forEach((k,v) -> System.out.println(k + "->" + v));
+        for (Map.Entry<Integer, Integer> entry : playableCardNumberCountMap.entrySet()) {
+            //get the count of winning numbers for the card
+            int countOfWinningNumbersFromCard = initialCardList.stream()
+                    .filter(card -> card.getId() == entry.getKey())
+                    .map(card -> card.winningNumbersWithPlayer().size())
+                    .findAny()
+                    .orElse(-1);
+            System.out.println("Card with id: " + entry.getKey() + " has " + countOfWinningNumbersFromCard + " matching numbers");
+            for (int i = 1; i <= countOfWinningNumbersFromCard; i++) {
+                int countOfCurrentCard = entry.getValue();
+                int i1 = playableCardNumberCountMap.get(entry.getKey() + i) + countOfCurrentCard;
+                playableCardNumberCountMap.put(entry.getKey() + i, playableCardNumberCountMap.get(entry.getKey() + i) + countOfCurrentCard);
+                wonCardNumberCountMap.put(entry.getKey() + i, wonCardNumberCountMap.get(entry.getKey() + i) + countOfCurrentCard);
+            }
+            System.out.println("After playing card id: " + entry.getKey());
+            wonCardNumberCountMap.forEach((k,v) -> System.out.println(k + "->" + v));
+            System.out.println("*******************");
+        }
+        //wonCardNumberCountMap.forEach((k,v) -> System.out.println(k + "->" + v));
+        int sum = wonCardNumberCountMap.values().stream()
+                .mapToInt(i -> i)
+                .sum();
+        System.out.println("sum = " + sum);
+    }
     public static void main(String[] args) {
         String dirName = "day4";
         //String fileName = "Day4Sample.txt";
         String fileName = "Day4Part1Input.txt";
         AOC04Dec2023 aoc04Dec2023 = new AOC04Dec2023();
-        double totalWorthPart1 = aoc04Dec2023.calculateCardsWorth(dirName, fileName);
-        System.out.println(totalWorthPart1);    //20117
-//        List<String> lines = aoc04Dec2023.readFile(dirName, fileName);
-//        lines.forEach(System.out::println);
+        aoc04Dec2023.playGamePart2(dirName, fileName);  //part2: 13768818
     }
+
+//    public static void main(String[] args) {
+//        String dirName = "day4";
+//        //String fileName = "Day4Sample.txt";
+//        String fileName = "Day4Part1Input.txt";
+//        AOC04Dec2023 aoc04Dec2023 = new AOC04Dec2023();
+//        double totalWorthPart1 = aoc04Dec2023.calculateCardsWorth(dirName, fileName);
+//        System.out.println(totalWorthPart1);    //20117
+////        List<String> lines = aoc04Dec2023.readFile(dirName, fileName);
+////        lines.forEach(System.out::println);
+//    }
 }
