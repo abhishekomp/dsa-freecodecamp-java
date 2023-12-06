@@ -2,19 +2,24 @@ package org.example.puzzles.aoc2023._06dec;
 
 public class Race {
 
-    private final int totalAllowedDuration;
-    private final int currentRecord;
+    private final double totalAllowedDuration;
+    private final double currentRecord;
 
     public Race(int totalAllowedDuration, int currentRecord) {
         this.totalAllowedDuration = totalAllowedDuration;
         this.currentRecord = currentRecord;
     }
 
-    public int getTotalAllowedDuration() {
+    public Race(Double totalAllowedDuration, Double currentRecord) {
+        this.totalAllowedDuration = totalAllowedDuration;
+        this.currentRecord = currentRecord;
+    }
+
+    public double getTotalAllowedDuration() {
         return totalAllowedDuration;
     }
 
-    public int getCurrentRecord() {
+    public double getCurrentRecord() {
         return currentRecord;
     }
 

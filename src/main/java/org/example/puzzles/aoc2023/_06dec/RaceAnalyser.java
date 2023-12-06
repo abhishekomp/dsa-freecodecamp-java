@@ -13,14 +13,14 @@ import static java.util.stream.Collectors.toList;
 public class RaceAnalyser {
 
     // For the range of allowed time, calculate the distance travelled by boat i.e. for each millisecond in the range.
-    private int getDistanceTravelled(int pressedDuration, int totalAllowedDuration){
-        int timeForTravel = totalAllowedDuration - pressedDuration;
+    private double getDistanceTravelled(int pressedDuration, double totalAllowedDuration){
+        double timeForTravel = totalAllowedDuration - pressedDuration;
         return pressedDuration * timeForTravel;
     }
 
     // Determine if pressing for n milliseconds, if it is possible to break the current record
-    private boolean canBreakRecord(int pressedDuration, int currentRecord, int totalAllowedDuration){
-        int distanceTravelled = getDistanceTravelled(pressedDuration, totalAllowedDuration);
+    private boolean canBreakRecord(int pressedDuration, double currentRecord, double totalAllowedDuration){
+        double distanceTravelled = getDistanceTravelled(pressedDuration, totalAllowedDuration);
         return distanceTravelled > currentRecord;
     }
 
@@ -36,9 +36,9 @@ public class RaceAnalyser {
 
     // For the given race get the number of ways the record can be broken
     public int numberOfWaysToBreakTheRecord(Race race){
-        int totalAllowedDuration = race.getTotalAllowedDuration();
-        int currentRecord = race.getCurrentRecord();
-        List<Integer> waysToBreakRecord = IntStream.rangeClosed(0, totalAllowedDuration)
+        double totalAllowedDuration = race.getTotalAllowedDuration();
+        double currentRecord = race.getCurrentRecord();
+        List<Integer> waysToBreakRecord = IntStream.rangeClosed(0, (int) totalAllowedDuration)
                 .filter(i -> canBreakRecord(i, currentRecord, totalAllowedDuration))
                 .boxed()
                 .collect(toList());
@@ -50,9 +50,9 @@ public class RaceAnalyser {
         ReadTextFile readTextFile = new ReadTextFile();
         List<String> raceLines = readTextFile.readTextFileFromResources(dirName, fileName);
         String timeLine = raceLines.get(0);
-        List<Integer> allowedTimeLimits = getValues(timeLine);
+        List<Double> allowedTimeLimits = getValues(timeLine);
         String distanceLine = raceLines.get(1);
-        List<Integer> currentRecordList = getValues(distanceLine);
+        List<Double> currentRecordList = getValues(distanceLine);
         List<Race> races = new ArrayList<>();
         for(int i = 0; i < allowedTimeLimits.size(); i++){
             races.add(new Race(allowedTimeLimits.get(i), currentRecordList.get(i)));
@@ -60,16 +60,17 @@ public class RaceAnalyser {
         return races;
     }
 
-    private List<Integer> getValues(String str) {
-        List<Integer> valueList = new ArrayList<>();
+    private List<Double> getValues(String str) {
+        List<Double> valueList = new ArrayList<>();
         Pattern pattern = Pattern.compile("(\\d+)");
         Matcher matcher = pattern.matcher(str);
         while(matcher.find()){
-            valueList.add(Integer.parseInt(matcher.group(1)));
+            valueList.add(Double.parseDouble(matcher.group(1)));
         }
         return valueList;
     }
 
+    //Done: 1710720
     public double part1main(String dirName, String fileName){
         List<Race> races = readFileAndCreateRaces(dirName, fileName);
         return races.stream()
@@ -77,10 +78,18 @@ public class RaceAnalyser {
                 .reduce(1, (partialResult, number) -> partialResult * number);
     }
 
+    //Done: 35349468 (= 3.5349468E7)
+    public double part2main(String dirName, String fileName){
+        List<Race> races = readFileAndCreateRaces(dirName, fileName);
+        return races.stream()
+                .mapToDouble(this::numberOfWaysToBreakTheRecord)
+                .reduce(1, (partialResult, number) -> partialResult * number);
+    }
     public static void main(String[] args) {
         RaceAnalyser raceAnalyser = new RaceAnalyser();
         //double errorMargin = raceAnalyser.part1main("day6", "Day6Sample.txt");
-        double errorMargin = raceAnalyser.part1main("day6", "Day6Input.txt");   //1710720 Done
+        //double errorMargin = raceAnalyser.part1main("day6", "Day6Input.txt");   //1710720 Done
+        double errorMargin = raceAnalyser.part2main("day6", "Day6InputPart2.txt");  //3.5349468E7
         System.out.println(errorMargin);
     }
 
