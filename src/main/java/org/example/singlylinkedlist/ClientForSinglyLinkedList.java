@@ -8,7 +8,20 @@ public class ClientForSinglyLinkedList {
         System.out.println(mySinglyLinkedList.getTail());
         System.out.println(mySinglyLinkedList.getLength());
 
-        System.out.println("\nLinked List:");
+
         mySinglyLinkedList.printList();
+
+        //append a value
+        int append = mySinglyLinkedList.append(8);
+        System.out.println("Appended value: " + append);
+        mySinglyLinkedList.printList(); //4->8
+        System.out.println("Length is now: " + mySinglyLinkedList.getLength());
+
+        //remove last
+        System.out.print("Remove last: ");
+        int removeLast = mySinglyLinkedList.removeLast().getValue();
+        System.out.println(removeLast);
+        mySinglyLinkedList.printList();
+        System.out.println("Length is now: " + mySinglyLinkedList.getLength());
     }
 }
