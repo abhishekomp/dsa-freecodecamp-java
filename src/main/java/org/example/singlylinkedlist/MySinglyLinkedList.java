@@ -238,9 +238,11 @@ public class MySinglyLinkedList {
      * Reverses the linked list in place.
      */
     public void reverse(){
+        //swap head and tail
         Node temp = head;
         head = tail;
         tail = temp;
+
         Node after = temp.next;
         Node before = null;
         for(int i = 0; i < length; i++){
@@ -254,6 +256,33 @@ public class MySinglyLinkedList {
         head = null;
         tail = null;
         length = 0;
+    }
+
+    public Node findMiddleNode_without_using_length(){
+        if(length == 0){
+            return null;
+        }
+        if(length == 1){
+            return head;
+        }
+        int middleIndex = length/2;
+        return get(middleIndex);
+    }
+
+    /**
+     * Finds the middle node of the linked list without considering the length of the linked list.
+     * Also, this implementation uses the slow and fast pointer approach and has space complexity of O(1)
+     * @return the middle node. For even number of elements 4/2=2 element at index 2 will be returned.
+     */
+    public Node findMiddleNode(){
+        Node slow = head;
+        Node fast = head;
+
+        while(fast != null && fast.next != null){
+            slow = slow.next;
+            fast = fast.next.next;
+        }
+        return slow;
     }
 
     /**

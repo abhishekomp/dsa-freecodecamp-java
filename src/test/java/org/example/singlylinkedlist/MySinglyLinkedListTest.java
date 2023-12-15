@@ -230,4 +230,51 @@ class MySinglyLinkedListTest {
         mySinglyLinkedList.clear();
         assertEquals(0, mySinglyLinkedList.getLength());
     }
+
+    @Test
+    void test_findMiddleNode_when_list_has_even_number_of_items(){
+    /*
+    If the list has an even number of nodes, the method should return the second middle node.
+    */
+        MySinglyLinkedList mySinglyLinkedList = new MySinglyLinkedList(10);
+        mySinglyLinkedList.append(20);
+        mySinglyLinkedList.append(30);
+        mySinglyLinkedList.append(40);
+
+        assertEquals(30, mySinglyLinkedList.findMiddleNode().getValue());
+    }
+
+    @Test
+    void test_findMiddleNode_when_list_has_two_items(){
+    /*
+    If the list has an even number of nodes, the method should return the second middle node.
+    */
+        MySinglyLinkedList mySinglyLinkedList = new MySinglyLinkedList(10);
+        mySinglyLinkedList.append(20);
+
+        assertEquals(20, mySinglyLinkedList.findMiddleNode().getValue());
+    }
+
+    @Test
+    void test_findMiddleNode_when_list_has_one_item(){
+    /*
+    If the list has an even number of nodes, the method should return the second middle node.
+    */
+        MySinglyLinkedList mySinglyLinkedList = new MySinglyLinkedList(10);
+        assertEquals(10, mySinglyLinkedList.findMiddleNode().getValue());
+    }
+
+    @Test
+    void test_findMiddleNode_when_list_has_odd_number_of_items(){
+    /*
+    If the list has an even number of nodes, the method should return the second middle node.
+    */
+        MySinglyLinkedList mySinglyLinkedList = new MySinglyLinkedList(10);
+        mySinglyLinkedList.append(20);
+        mySinglyLinkedList.append(30);
+        mySinglyLinkedList.append(40);
+        mySinglyLinkedList.append(50);
+
+        assertEquals(30, mySinglyLinkedList.findMiddleNode().getValue());
+    }
 }
