@@ -16,12 +16,12 @@ public class MySinglyLinkedList {
         this.length = 1;
     }
 
-    public int getHead() {
-        return head.value;
+    public Node getHead() {
+        return head;
     }
 
-    public int getTail() {
-        return tail.value;
+    public Node getTail() {
+        return tail;
     }
 
     public int getLength() {
@@ -281,6 +281,38 @@ public class MySinglyLinkedList {
         while(fast != null && fast.next != null){
             slow = slow.next;
             fast = fast.next.next;
+        }
+        return slow;
+    }
+
+    /**
+     * Finds kth node from the end. The last node is considered as the 1st from end.
+     * Does not make use of the length variable of the linked list.
+     * Does not make use of the tail node of the linked list.
+     * It also considers if kth node is possible to find in the given linked list.
+     * @return kth node from the end
+     */
+    public Node findKthNodeFromEnd(int kth){
+        // Case: List may be empty, then return null
+        if(head == null){
+            return null;
+        }
+        Node fast = head;
+        // Case: When kth node is not possible in the given list.
+        // The last node is the 1st node from last.
+        // If we want the 2nd node from last then the idea is to move the fast node to the 2nd node and then start moving slow and fast node 1 step at a time until the fast node reaches the last node.
+        for(int i = 1; i <kth; i++){
+            fast = fast.next;
+            if(fast == null){
+                return null;
+            }
+        }
+        // Case: When kth node is possible in the given list.
+        Node slow = head;
+
+        while(fast.next != null){
+            fast = fast.next;
+            slow = slow.next;
         }
         return slow;
     }

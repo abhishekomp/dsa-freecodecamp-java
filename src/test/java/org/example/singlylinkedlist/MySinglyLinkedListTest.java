@@ -10,13 +10,20 @@ class MySinglyLinkedListTest {
     @Test
     void getHead() {
         MySinglyLinkedList mySinglyLinkedList = new MySinglyLinkedList(4);
-        assertEquals(4, mySinglyLinkedList.getHead());
+        assertEquals(4, mySinglyLinkedList.getHead().getValue());
+    }
+
+    @Test
+    void getHead_on_empty_list() {
+        MySinglyLinkedList mySinglyLinkedList = new MySinglyLinkedList(4);
+        mySinglyLinkedList.clear();
+        assertNull(mySinglyLinkedList.getHead());
     }
 
     @Test
     void getTail() {
         MySinglyLinkedList mySinglyLinkedList = new MySinglyLinkedList(4);
-        assertEquals(4, mySinglyLinkedList.getTail());
+        assertEquals(4, mySinglyLinkedList.getTail().getValue());
     }
 
     @Test
@@ -47,7 +54,7 @@ class MySinglyLinkedListTest {
         MySinglyLinkedList mySinglyLinkedList = new MySinglyLinkedList(4);
         assertEquals(4, mySinglyLinkedList.removeLast().getValue());
         mySinglyLinkedList.prepend(10);
-        assertEquals(10, mySinglyLinkedList.getHead());
+        assertEquals(10, mySinglyLinkedList.getHead().getValue());
     }
 
     @Test
@@ -55,8 +62,8 @@ class MySinglyLinkedListTest {
         MySinglyLinkedList mySinglyLinkedList = new MySinglyLinkedList(4);
         assertEquals(4, mySinglyLinkedList.removeLast().getValue());
         mySinglyLinkedList.prepend(10);
-        assertEquals(10, mySinglyLinkedList.getHead());
-        assertEquals(10, mySinglyLinkedList.getTail());
+        assertEquals(10, mySinglyLinkedList.getHead().getValue());
+        assertEquals(10, mySinglyLinkedList.getTail().getValue());
         assertEquals(1, mySinglyLinkedList.getLength());
     }
 
@@ -64,8 +71,8 @@ class MySinglyLinkedListTest {
     void test_prepend_to_existing_list() {
         MySinglyLinkedList mySinglyLinkedList = new MySinglyLinkedList(4);
         mySinglyLinkedList.prepend(10);
-        assertEquals(10, mySinglyLinkedList.getHead());
-        assertEquals(4, mySinglyLinkedList.getTail());
+        assertEquals(10, mySinglyLinkedList.getHead().getValue());
+        assertEquals(4, mySinglyLinkedList.getTail().getValue());
         assertEquals(2, mySinglyLinkedList.getLength());
     }
 
@@ -87,7 +94,7 @@ class MySinglyLinkedListTest {
         MySinglyLinkedList mySinglyLinkedList = new MySinglyLinkedList(4);
         mySinglyLinkedList.append(8);
         assertEquals(4, mySinglyLinkedList.removeFirst().getValue());
-        assertEquals(8, mySinglyLinkedList.getHead());
+        assertEquals(8, mySinglyLinkedList.getHead().getValue());
         assertEquals(1, mySinglyLinkedList.getLength());
     }
 
@@ -107,13 +114,13 @@ class MySinglyLinkedListTest {
         mySinglyLinkedList.append(20);
 
         assertTrue(mySinglyLinkedList.set(100, 0));
-        assertEquals(100, mySinglyLinkedList.getHead());
-        assertEquals(20, mySinglyLinkedList.getTail());
+        assertEquals(100, mySinglyLinkedList.getHead().getValue());
+        assertEquals(20, mySinglyLinkedList.getTail().getValue());
         assertEquals(2, mySinglyLinkedList.getLength());
 
         assertTrue(mySinglyLinkedList.set(200, 1));
-        assertEquals(100, mySinglyLinkedList.getHead());
-        assertEquals(200, mySinglyLinkedList.getTail());
+        assertEquals(100, mySinglyLinkedList.getHead().getValue());
+        assertEquals(200, mySinglyLinkedList.getTail().getValue());
         assertEquals(2, mySinglyLinkedList.getLength());
     }
 
@@ -125,8 +132,8 @@ class MySinglyLinkedListTest {
 
         assertTrue(mySinglyLinkedList.set(100, 2));
         mySinglyLinkedList.printList();
-        assertEquals(10, mySinglyLinkedList.getHead());
-        assertEquals(100, mySinglyLinkedList.getTail());
+        assertEquals(10, mySinglyLinkedList.getHead().getValue());
+        assertEquals(100, mySinglyLinkedList.getTail().getValue());
         assertEquals(3, mySinglyLinkedList.getLength());
     }
 
@@ -136,8 +143,8 @@ class MySinglyLinkedListTest {
         assertTrue(mySinglyLinkedList.insertAt(5, 0));
         assertTrue(mySinglyLinkedList.insertAt(20, 2));
         assertEquals(3, mySinglyLinkedList.getLength());
-        assertEquals(5, mySinglyLinkedList.getHead());
-        assertEquals(20, mySinglyLinkedList.getTail());
+        assertEquals(5, mySinglyLinkedList.getHead().getValue());
+        assertEquals(20, mySinglyLinkedList.getTail().getValue());
     }
 
     @Test
@@ -147,8 +154,8 @@ class MySinglyLinkedListTest {
         assertTrue(mySinglyLinkedList.insertAt(5, 0));
         assertTrue(mySinglyLinkedList.insertAt(30, 3));
         assertEquals(4, mySinglyLinkedList.getLength());
-        assertEquals(5, mySinglyLinkedList.getHead());
-        assertEquals(30, mySinglyLinkedList.getTail());
+        assertEquals(5, mySinglyLinkedList.getHead().getValue());
+        assertEquals(30, mySinglyLinkedList.getTail().getValue());
         assertFalse(mySinglyLinkedList.insertAt(100, -1));
         assertFalse(mySinglyLinkedList.insertAt(100, 10));
     }
@@ -162,13 +169,13 @@ class MySinglyLinkedListTest {
         mySinglyLinkedList.append(50);
         assertTrue(mySinglyLinkedList.insertAt(25, 2));
         assertEquals(6, mySinglyLinkedList.getLength());
-        assertEquals(10, mySinglyLinkedList.getHead());
-        assertEquals(50, mySinglyLinkedList.getTail());
+        assertEquals(10, mySinglyLinkedList.getHead().getValue());
+        assertEquals(50, mySinglyLinkedList.getTail().getValue());
         assertEquals(25, mySinglyLinkedList.get(2).getValue());
 
         //2nd insert
         assertTrue(mySinglyLinkedList.insertAt(60, 6));
-        assertEquals(60, mySinglyLinkedList.getTail());
+        assertEquals(60, mySinglyLinkedList.getTail().getValue());
         assertEquals(7, mySinglyLinkedList.getLength());
         assertEquals(60, mySinglyLinkedList.get(6).getValue());
 
@@ -189,14 +196,14 @@ class MySinglyLinkedListTest {
 
         assertEquals(10, mySinglyLinkedList.remove(0).getValue());
         assertEquals(4, mySinglyLinkedList.getLength());
-        assertEquals(20, mySinglyLinkedList.getHead());
-        assertEquals(50, mySinglyLinkedList.getTail());
+        assertEquals(20, mySinglyLinkedList.getHead().getValue());
+        assertEquals(50, mySinglyLinkedList.getTail().getValue());
 
         assertEquals(50, mySinglyLinkedList.remove(3).getValue());
         assertEquals(30, mySinglyLinkedList.remove(1).getValue());
         assertEquals(2, mySinglyLinkedList.getLength());
-        assertEquals(20, mySinglyLinkedList.getHead());
-        assertEquals(40, mySinglyLinkedList.getTail());
+        assertEquals(20, mySinglyLinkedList.getHead().getValue());
+        assertEquals(40, mySinglyLinkedList.getTail().getValue());
 
         mySinglyLinkedList.printList(); //20, 40
     }
@@ -214,8 +221,8 @@ class MySinglyLinkedListTest {
 
         mySinglyLinkedList.reverse();
         mySinglyLinkedList.printList();
-        assertEquals(50, mySinglyLinkedList.getHead());
-        assertEquals(10, mySinglyLinkedList.getTail());
+        assertEquals(50, mySinglyLinkedList.getHead().getValue());
+        assertEquals(10, mySinglyLinkedList.getTail().getValue());
     }
 
     @Test
@@ -276,5 +283,37 @@ class MySinglyLinkedListTest {
         mySinglyLinkedList.append(50);
 
         assertEquals(30, mySinglyLinkedList.findMiddleNode().getValue());
+    }
+
+    @Test
+    void findKthNodeFromEnd() {
+        MySinglyLinkedList mySinglyLinkedList = new MySinglyLinkedList(10);
+        mySinglyLinkedList.append(20);
+        mySinglyLinkedList.append(30);
+        mySinglyLinkedList.append(40);
+        mySinglyLinkedList.append(50);
+        MySinglyLinkedList.Node kthNodeFromEnd = mySinglyLinkedList.findKthNodeFromEnd(1);
+        System.out.println(kthNodeFromEnd.getValue());
+        assertEquals(50, kthNodeFromEnd.getValue());
+
+    }
+
+    @Test
+    void findKthNodeFromEnd_2() {
+        MySinglyLinkedList mySinglyLinkedList = new MySinglyLinkedList(10);
+        mySinglyLinkedList.append(20);
+        //MySinglyLinkedList.Node kthNodeFromEnd = mySinglyLinkedList.findKthNodeFromEnd(1);
+        //System.out.println(kthNodeFromEnd.getValue());
+        assertEquals(20, mySinglyLinkedList.findKthNodeFromEnd(1).getValue());
+        assertEquals(10, mySinglyLinkedList.findKthNodeFromEnd(2).getValue());
+        assertNull(mySinglyLinkedList.findKthNodeFromEnd(3));
+    }
+
+    @Test
+    void findKthNodeFromEnd_on_empty_list() {
+        MySinglyLinkedList mySinglyLinkedList = new MySinglyLinkedList(10);
+        mySinglyLinkedList.clear();
+        assertNull(mySinglyLinkedList.getHead());
+        assertNull(mySinglyLinkedList.findKthNodeFromEnd(3));
     }
 }
