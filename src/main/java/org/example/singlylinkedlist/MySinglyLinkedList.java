@@ -318,6 +318,73 @@ public class MySinglyLinkedList {
     }
 
     /**
+     * You have a singly linked list that DOES NOT HAVE A TAIL POINTER
+     * Given a value x you need to rearrange the linked list such that all nodes with a value less than x come before all nodes with a value greater than or equal to x.
+     * Additionally, the relative order of nodes in both partitions should remain unchanged.
+     * Constraints:
+     * The solution should traverse the linked list at most once.
+     * The solution should not create a new linked list.
+     * Output:
+     * The same linked list but rearranged as per the above criteria.
+     * The function partitionList takes an integer x as a parameter and modifies the current linked list in place according to the specified criteria. If the linked list is empty (i.e., head is null), the function should return immediately without making any changes.
+     * @param x the value used to partition
+     * @return the head node of rearranged list
+     */
+    private Node partitionList(int x){
+        if(head == null){
+            return null;
+        }
+        Node smallDummy = new Node(-1);
+        Node bigDummy = new Node(-1);
+
+        Node smallChainHead = null;
+        Node bigChainHead = null;
+        Node temp = head;
+        while(temp != null){
+            if(temp.getValue() < x){
+                if(smallDummy.next == null){
+                    smallDummy.next = temp;
+                } else {
+                    if (smallChainHead != null) {
+                        smallChainHead.next = temp;
+                    }
+                }
+                smallChainHead = temp;
+            } else if (temp.getValue() >= x) {
+                if(bigDummy.next == null){
+                    bigDummy.next = temp;
+                } else {
+                    if (bigChainHead != null) {
+                        bigChainHead.next = temp;
+                    }
+                }
+                bigChainHead = temp;
+            }
+            temp = temp.next;
+        }
+        if (smallChainHead != null) {
+            smallChainHead.next = bigDummy.next;
+        }
+        if (bigChainHead != null) {
+            bigChainHead.next = null;
+        }
+        return smallDummy.next;
+    }
+
+    public String partitionAndPrint(int x){
+        Node node = partitionList(x);
+        List<String> strings = new ArrayList<>();
+        while(node != null){
+            System.out.println();
+            strings.add(""+node.value);
+            node = node.next;
+        }
+        //System.out.print("\nLinked List:");
+        //System.out.println(String.join("->", strings));
+        return String.join("->", strings);
+    }
+
+    /**
      * Inner class representing the node of the linked list.
      */
     class Node{

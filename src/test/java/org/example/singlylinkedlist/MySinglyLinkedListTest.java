@@ -316,4 +316,46 @@ class MySinglyLinkedListTest {
         assertNull(mySinglyLinkedList.getHead());
         assertNull(mySinglyLinkedList.findKthNodeFromEnd(3));
     }
+
+    @Test
+    void partitionList() {
+        MySinglyLinkedList mySinglyLinkedList = new MySinglyLinkedList(3);
+        mySinglyLinkedList.append(8);
+        mySinglyLinkedList.append(5);
+        mySinglyLinkedList.append(10);
+        mySinglyLinkedList.append(2);
+        mySinglyLinkedList.append(1);
+        mySinglyLinkedList.printList();
+
+        assertEquals("3->2->1->8->5->10", mySinglyLinkedList.partitionAndPrint(5));
+    }
+
+    @Test
+    void partitionList_2() {
+        MySinglyLinkedList mySinglyLinkedList = new MySinglyLinkedList(1);
+        mySinglyLinkedList.append(4);
+        mySinglyLinkedList.append(3);
+        mySinglyLinkedList.append(2);
+        mySinglyLinkedList.append(5);
+        mySinglyLinkedList.append(2);
+        mySinglyLinkedList.printList();
+
+        assertEquals("1->2->2->4->3->5", mySinglyLinkedList.partitionAndPrint(3));
+    }
+
+    @Test
+    void partitionList_3_with_empty_list() {
+        MySinglyLinkedList mySinglyLinkedList = new MySinglyLinkedList(1);
+        mySinglyLinkedList.append(4);
+        mySinglyLinkedList.append(3);
+        mySinglyLinkedList.append(2);
+        mySinglyLinkedList.append(5);
+        mySinglyLinkedList.append(2);
+        mySinglyLinkedList.printList();
+        mySinglyLinkedList.clear();
+        assertNull(mySinglyLinkedList.getHead());
+
+        assertEquals("", mySinglyLinkedList.partitionAndPrint(3));
+    }
+
 }
