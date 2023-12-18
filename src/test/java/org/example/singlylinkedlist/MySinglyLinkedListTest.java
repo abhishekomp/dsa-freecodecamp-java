@@ -358,4 +358,57 @@ class MySinglyLinkedListTest {
         assertEquals("", mySinglyLinkedList.partitionAndPrint(3));
     }
 
+    @Test
+    void removeDuplicates() {
+        MySinglyLinkedList mySinglyLinkedList = new MySinglyLinkedList(1);
+        mySinglyLinkedList.append(2);
+        mySinglyLinkedList.append(3);
+        mySinglyLinkedList.append(2);
+        mySinglyLinkedList.append(4);
+        mySinglyLinkedList.printList();
+
+        MySinglyLinkedList.Node node = mySinglyLinkedList.removeDuplicates();
+        String asString = mySinglyLinkedList.getLinkedListAsString(node);
+        System.out.println(asString);
+        assertEquals("1->2->3->4", asString);
+//        mySinglyLinkedList.removeDuplicates();
+//        mySinglyLinkedList.printList();
+
+    }
+
+    @Test
+    void removeDuplicates_2() {
+        MySinglyLinkedList mySinglyLinkedList = new MySinglyLinkedList(1);
+        mySinglyLinkedList.append(2);
+        mySinglyLinkedList.printList();
+
+        MySinglyLinkedList.Node node = mySinglyLinkedList.removeDuplicates();
+        String asString = mySinglyLinkedList.getLinkedListAsString(node);
+        System.out.println(asString);
+        assertEquals("1->2", asString);
+    }
+
+    @Test
+    void removeDuplicates_3() {
+        MySinglyLinkedList mySinglyLinkedList = new MySinglyLinkedList(1);
+        mySinglyLinkedList.printList();
+
+        MySinglyLinkedList.Node node = mySinglyLinkedList.removeDuplicates();
+        String asString = mySinglyLinkedList.getLinkedListAsString(node);
+        System.out.println(asString);
+        assertEquals("1", asString);
+    }
+
+    @Test
+    void removeDuplicates_4() {
+        MySinglyLinkedList mySinglyLinkedList = new MySinglyLinkedList(1);
+        mySinglyLinkedList.append(2);
+        mySinglyLinkedList.append(1);
+        mySinglyLinkedList.printList();
+
+        MySinglyLinkedList.Node node = mySinglyLinkedList.removeDuplicates();
+        String asString = mySinglyLinkedList.getLinkedListAsString(node);
+        System.out.println(asString);
+        assertEquals("1->2", asString);
+    }
 }

@@ -1,7 +1,9 @@
 package org.example.singlylinkedlist;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class MySinglyLinkedList {
 
@@ -38,6 +40,24 @@ public class MySinglyLinkedList {
         }
         System.out.print("\nLinked List:");
         System.out.println(String.join("->", strings));
+    }
+
+    /**
+     * Returns the linked list in String format
+     * @param node the node from which to start printing the linked list
+     * @return the string format of the linked list
+     */
+    public String getLinkedListAsString(Node node) {
+        Node temp = node;
+        List<String> strings = new ArrayList<>();
+        while(temp != null){
+            //System.out.println(temp.value);
+            strings.add(""+temp.value);
+            temp = temp.next;
+        }
+//        System.out.print("\nLinked List:");
+//        System.out.println(String.join("->", strings));
+        return String.join("->", strings);
     }
 
     public void printAll() {
@@ -383,6 +403,45 @@ public class MySinglyLinkedList {
         //System.out.println(String.join("->", strings));
         return String.join("->", strings);
     }
+
+
+    @Deprecated
+    public void removeDuplicates_my(){
+        Set<Integer> integerSet = new HashSet<>();
+        Node preCurrentDummy = new Node(-1);
+        preCurrentDummy.next = head;
+        Node current = head;
+        while(head != null){
+            boolean add = integerSet.add(head.getValue());
+            if(!add){
+
+            }
+        }
+    }
+//
+
+    /**
+     * Removes the duplicate items in the linked list (in place modification)
+     * @return the head node of the in place modified linked list
+     */
+    public Node removeDuplicates(){
+        Set<Integer> integerSet = new HashSet<>();
+        Node prev = null;
+        Node current = head;
+        while(current != null){
+            boolean add = integerSet.add(current.getValue());
+            if(add){
+                prev = current;
+            } else {
+                if (prev != null) {
+                    prev.next = current.next;
+                }
+            }
+            current = current.next;
+        }
+        return head;
+    }
+
 
     /**
      * Inner class representing the node of the linked list.
