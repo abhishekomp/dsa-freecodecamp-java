@@ -414,4 +414,14 @@ class MySinglyLinkedListTest {
         assertEquals("1->2", asString);
         assertEquals(2, mySinglyLinkedList.getLength());
     }
+
+    @Test
+    void binaryToDecimal() {
+        MySinglyLinkedList mySinglyLinkedList = new MySinglyLinkedList(1);
+        mySinglyLinkedList.append(0);
+        mySinglyLinkedList.append(1);
+        mySinglyLinkedList.printList();
+
+        assertEquals(5, mySinglyLinkedList.binaryToDecimal());
+    }
 }
