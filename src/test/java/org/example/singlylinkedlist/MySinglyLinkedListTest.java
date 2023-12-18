@@ -373,7 +373,7 @@ class MySinglyLinkedListTest {
         assertEquals("1->2->3->4", asString);
 //        mySinglyLinkedList.removeDuplicates();
 //        mySinglyLinkedList.printList();
-
+        assertEquals(4, mySinglyLinkedList.getLength());
     }
 
     @Test
@@ -386,6 +386,7 @@ class MySinglyLinkedListTest {
         String asString = mySinglyLinkedList.getLinkedListAsString(node);
         System.out.println(asString);
         assertEquals("1->2", asString);
+        assertEquals(2, mySinglyLinkedList.getLength());
     }
 
     @Test
@@ -397,6 +398,7 @@ class MySinglyLinkedListTest {
         String asString = mySinglyLinkedList.getLinkedListAsString(node);
         System.out.println(asString);
         assertEquals("1", asString);
+        assertEquals(1, mySinglyLinkedList.getLength());
     }
 
     @Test
@@ -410,5 +412,6 @@ class MySinglyLinkedListTest {
         String asString = mySinglyLinkedList.getLinkedListAsString(node);
         System.out.println(asString);
         assertEquals("1->2", asString);
+        assertEquals(2, mySinglyLinkedList.getLength());
     }
 }

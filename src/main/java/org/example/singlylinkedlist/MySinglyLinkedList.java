@@ -436,6 +436,7 @@ public class MySinglyLinkedList {
                 if (prev != null) {
                     prev.next = current.next;
                 }
+                length--;
             }
             current = current.next;
         }
