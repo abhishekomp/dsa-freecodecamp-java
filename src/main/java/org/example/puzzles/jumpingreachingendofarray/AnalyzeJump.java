@@ -48,10 +48,35 @@ public class AnalyzeJump {
      * 0 <= j <= nums[i] and
      * i + j < n
      * Return the minimum number of jumps to reach nums[n - 1]. The test cases are generated such that you can reach nums[n - 1].
+     * It is guaranteed that you will reach the end of the array.
      * @return
      */
     public int minimumStepsToReachTheEnd(int[] inputArr){
-        return 1;
+        int totalJumps = 0;
+        int destination = inputArr.length - 1;
+        int coverage = 0;   //max I can reach from my current window of available indices.
+        int windowLastIndex = 0;    // the last index of my current available window because I need to analyze each index of my current window to find my coverage.
+
+        //Base case
+        if(inputArr.length == 1){
+            return 0;
+        }
+
+        for(int i = 0; i < inputArr.length; i++){
+            coverage = Math.max(coverage, i + inputArr[i]);
+
+            // window of indices to analyze
+            if(i == windowLastIndex){
+                windowLastIndex = coverage;
+                totalJumps++;
+
+                // while I am at the edge of the current window, check if my coverage took me to the destination or beyond
+                if(coverage >= destination){
+                    break;
+                }
+            }
+        }
+        return totalJumps;
     }
 
     public int returnInt(){

@@ -65,12 +65,28 @@ class AnalyzeJumpTest {
         void minimumStepsToReachTheEnd() {
             int[] inputArr = {2, 3, 1, 1, 4};
             assertEquals(2, analyzeJump.minimumStepsToReachTheEnd(inputArr));
+            // 2 -> 3 -> 4 gives 2 jumps as the minimum number of jumps needs to reach the end.
         }
 
         @Test
         void minimumStepsToReachTheEnd_2() {
             int[] inputArr = {2, 4, 1, 2, 3, 1, 1, 2};
             assertEquals(3, analyzeJump.minimumStepsToReachTheEnd(inputArr));
+            // 2 -> 4 -> 3 -> 2 gives 3 as the minimum number of jumps needs to reach the end.
+        }
+
+        @Test
+        void minimumStepsToReachTheEnd_3() {
+            int[] inputArr = {2, 4, 1, 2, 3, 4, 1, 2, 2};
+            assertEquals(3, analyzeJump.minimumStepsToReachTheEnd(inputArr));
+            // 2 -> 4 -> 4 -> 2 gives 3 jumps as the minimum number of jumps needs to reach the end.
+        }
+
+        @Test
+        void minimumStepsToReachTheEnd_4() {
+            int[] inputArr = {2, 3, 1, 2, 3, 4, 1, 2, 2};
+            assertEquals(4, analyzeJump.minimumStepsToReachTheEnd(inputArr));
+            // 2 -> 3 -> 3 -> 4 -> 2 gives 4 jumps as the minimum number of jumps needs to reach the end.
         }
 
 
