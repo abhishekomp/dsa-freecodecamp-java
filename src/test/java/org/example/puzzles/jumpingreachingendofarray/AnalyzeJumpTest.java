@@ -14,7 +14,6 @@ class AnalyzeJumpTest {
     void setUp() {
         analyzeJump = new AnalyzeJump();
     }
-
     @Nested
     @DisplayName("Can you reach the end of the array, Can you reach the end of the staircase")
     class ReachEndVerifier{
@@ -51,6 +50,30 @@ class AnalyzeJumpTest {
             int[] inputArr = {1, 1, 2, 4, 2, 1, 0, 0, 1, 3};
             assertFalse(analyzeJump.canReachTheEnd(inputArr));
         }
+
+        @Test
+        void canReachTheEnd_true_one_element() {
+            int[] inputArr = {2};
+            assertTrue(analyzeJump.canReachTheEnd(inputArr));
+        }
+    }
+
+    @Nested
+    @DisplayName("Can you reach the end of the array, Can you reach the end of the staircase")
+    class MinimumNumberOfStepsToReachTheEnd{
+        @Test
+        void minimumStepsToReachTheEnd() {
+            int[] inputArr = {2, 3, 1, 1, 4};
+            assertEquals(2, analyzeJump.minimumStepsToReachTheEnd(inputArr));
+        }
+
+        @Test
+        void minimumStepsToReachTheEnd_2() {
+            int[] inputArr = {2, 4, 1, 2, 3, 1, 1, 2};
+            assertEquals(3, analyzeJump.minimumStepsToReachTheEnd(inputArr));
+        }
+
+
     }
 
     @Test
