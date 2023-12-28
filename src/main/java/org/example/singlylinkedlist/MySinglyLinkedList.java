@@ -257,7 +257,7 @@ public class MySinglyLinkedList {
     /**
      * Reverses the linked list in place.
      */
-    public void reverse(){
+    public void reverse_orig(){
         //swap head and tail
         Node temp = head;
         head = tail;
@@ -276,6 +276,23 @@ public class MySinglyLinkedList {
         head = null;
         tail = null;
         length = 0;
+    }
+
+    /**
+     * Reverses the linked list in place. Does not create a new reversed list.
+     * As illustrated in the video by Nikhil Lohia (YT)
+     */
+    public void reverse(){
+        Node pre = null;
+        Node curr = head;
+        while(curr != null){
+            Node nextNode = curr.next;
+            curr.next = pre;
+            pre = curr;
+            curr = nextNode;
+        }
+        tail = head;
+        head = pre;
     }
 
     public Node findMiddleNode_without_using_length(){

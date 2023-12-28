@@ -226,6 +226,44 @@ class MySinglyLinkedListTest {
     }
 
     @Test
+    void test_reverse2() {
+        MySinglyLinkedList mySinglyLinkedList = new MySinglyLinkedList(10);
+        mySinglyLinkedList.append(20);
+
+        mySinglyLinkedList.printList();
+
+        mySinglyLinkedList.reverse();
+        mySinglyLinkedList.printList();
+        assertEquals(20, mySinglyLinkedList.getHead().getValue());
+        assertEquals(10, mySinglyLinkedList.getTail().getValue());
+    }
+
+    @Test
+    void test_reverse3() {
+        MySinglyLinkedList mySinglyLinkedList = new MySinglyLinkedList(10);
+
+        mySinglyLinkedList.printList();
+
+        mySinglyLinkedList.reverse();
+        mySinglyLinkedList.printList();
+        assertEquals(10, mySinglyLinkedList.getHead().getValue());
+        assertEquals(10, mySinglyLinkedList.getTail().getValue());
+    }
+
+    @Test
+    void test_reverse4() {
+        MySinglyLinkedList mySinglyLinkedList = new MySinglyLinkedList(10);
+        mySinglyLinkedList.clear();
+        mySinglyLinkedList.printList();
+
+
+        mySinglyLinkedList.reverse();
+        mySinglyLinkedList.printList();
+        assertNull(mySinglyLinkedList.getHead());
+        assertNull(mySinglyLinkedList.getTail());
+    }
+
+    @Test
     void clear() {
         MySinglyLinkedList mySinglyLinkedList = new MySinglyLinkedList(10);
         mySinglyLinkedList.append(20);
