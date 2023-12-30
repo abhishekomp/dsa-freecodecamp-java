@@ -1,7 +1,6 @@
 package org.example.puzzles.aoc2023._05dec;
 
 import java.util.*;
-import java.util.function.Function;
 
 import static java.util.stream.Collectors.toMap;
 
@@ -12,8 +11,8 @@ import static java.util.stream.Collectors.toMap;
 public class LocationCalculator {
     public long calculateLowestLocation(String dirName, String fileName){
         // Fetch the seed numbers from the file
-        SeedNumberFetcher seedNumberFetcher = new SeedNumberFetcher();
-        List<Long> seedNumbers = seedNumberFetcher.fetchSeedNumbers(dirName, fileName);
+        SeedNumberFetcher seedNumberFetcher = new SeedNumberFetcher(dirName, fileName);
+        Map<Long, Long> seedNumberMap = seedNumberFetcher.getSeedNumberMap();
 
         // Create different mappers using the input file
         MappingCreator mappingCreator = new MappingCreator();
@@ -21,24 +20,28 @@ public class LocationCalculator {
 //        Map<String, Mapper> mapperMap = mappers.stream()
 //                .collect(toMap(Mapper::getMapperName, mapper -> mapper, (val , val2) -> val, LinkedHashMap::new));
         Map<Long, Long> seedToLocationMap = new HashMap<>();
+        List<Long> locationList = new ArrayList<>();
         long mappedValue = 0;
-        for(Long seed : seedNumbers){
-            mappedValue = seed;
-            for(Mapper mapper : mappers){
-                mappedValue = mapper.performMapping(mappedValue);
-            }
-            seedToLocationMap.put(seed, mappedValue);
-            System.out.println("Seed " + seed + " maps to " + mappedValue);
+        for(Map.Entry<Long, Long> seedNumberStartEndEntry : seedNumberMap.entrySet()){
+          for(long i = seedNumberStartEndEntry.getKey(); i <= seedNumberStartEndEntry.getValue(); i++){
+              mappedValue = i;
+              for(Mapper mapper : mappers) {
+                  mappedValue = mapper.performMapping(i);
+              }
+              //seedToLocationMap.put(i, mappedValue);
+              locationList.add(mappedValue);
+          }
         }
-        LinkedHashMap<Long, Long> sortedSeedLocationMap = seedToLocationMap.entrySet().stream()
-                .sorted(Map.Entry.comparingByValue())
-                .collect(toMap(Map.Entry::getKey, Map.Entry::getValue, (v1, v2) -> v1, LinkedHashMap::new));
-        Map.Entry<Long, Long> firstEntry = sortedSeedLocationMap.entrySet().stream()
-                .findFirst()
-                .orElse(new AbstractMap.SimpleEntry<>(0L, 0L));
+        //System.out.println("Seed " + seed + " maps to " + mappedValue);
+        locationList.sort(Comparator.naturalOrder());
+//        LinkedHashMap<Long, Long> sortedSeedLocationMap = seedToLocationMap.entrySet().stream()
+//                .sorted(Map.Entry.comparingByValue())
+//                .collect(toMap(Map.Entry::getKey, Map.Entry::getValue, (v1, v2) -> v1, LinkedHashMap::new));
+//        Map.Entry<Long, Long> firstEntry = sortedSeedLocationMap.entrySet().stream()
+//                .findFirst()
+//                .orElse(new AbstractMap.SimpleEntry<>(0L, 0L));
         //System.out.println(first.getValue());
-        return firstEntry.getValue();
+        //return firstEntry.getValue();
+        return locationList.get(0);
     }
-
-
 }

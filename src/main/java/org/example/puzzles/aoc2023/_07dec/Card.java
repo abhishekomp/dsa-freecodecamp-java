@@ -5,7 +5,7 @@ import java.util.stream.IntStream;
 
 public class Card implements Comparable<Card>{
     private final char cardVal;
-    public static final char[] POSSIBLE_CARD_VALUES = {'A', 'K', 'Q', 'J', 'T', '9', '8', '7', '6', '5', '4', '3', '2'};
+    public static final char[] POSSIBLE_CARD_VALUES = {'A', 'K', 'Q', 'J', 'T', '9', '8', '7', '6', '5', '4', '3', '2', 'J'};
 
     public Card(char cardVal) {
         this.cardVal = cardVal;

@@ -7,6 +7,15 @@ import static java.util.stream.Collectors.toCollection;
 
 public class Direction {
 
+    /*
+    For 1 given line from the input file, the line is represented as
+    11A = (11B, XXX)
+    An instance of this class is represented as:
+    id              -> 11A
+    leftRight       -> 11B, XXX
+    directionStr    -> 11A = (11B, XXX)
+     */
+
     private final String id;
     private final String leftRight;
     private final String directionStr;
@@ -40,10 +49,23 @@ public class Direction {
                 '}';
     }
 
+    /**
+     * Creates a List of Direction objects using the lines from the input file
+     * @param lines Lines from the input file
+     * @return List containing Direction class's instances
+     */
     public static List<Direction> initializeDirectionsUsingListOfStrings(List<String> lines){
         return lines.stream()
                 .map(Direction::new)
                 .collect(toCollection(ArrayList::new));
+    }
+
+    public String applyDirectionAndGetNewDirectionId(char dirChar) {
+        if(dirChar == 'L'){
+            return getLeftDirection();
+        } else {
+            return getRightDirection();
+        }
     }
 
     public String getLeftDirection() {

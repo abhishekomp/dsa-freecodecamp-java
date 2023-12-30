@@ -1,12 +1,14 @@
 package org.example.puzzles.aoc2023._08dec;
 
+import org.example.puzzles.aoc2023.utils.ReadTextFile;
 import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Stream;
 
-import static java.util.stream.Collectors.toList;
+import static java.util.stream.Collectors.*;
 import static org.junit.jupiter.api.Assertions.*;
 
 class DirectionTest {
@@ -24,6 +26,21 @@ class DirectionTest {
         String directionStrTwo = "BBB = (DDD, EEE)";
         List<Direction> directions = Direction.initializeDirectionsUsingListOfStrings(List.of(directionStrOne, directionStrTwo));
         directions.forEach(System.out::println);
+    }
+
+    @Test
+    void initializeDirectionsUsingInputFile() {
+        ReadTextFile readTextFile = new ReadTextFile();
+        List<String> lines =
+                readTextFile.readTextFileFromResources("day8", "Day8Part1Input.txt");
+        List<Direction> directions = Direction.initializeDirectionsUsingListOfStrings(lines.subList(1, lines.size()));
+        Map<String, Long> directionIdToCountMap = directions.stream()
+                .collect(groupingBy(Direction::getId, counting()));
+        long countOfDirectionsWithSameId = directionIdToCountMap.entrySet().stream()
+                .filter(entry -> entry.getValue() > 1)
+                .count();
+        System.out.println(countOfDirectionsWithSameId);
+        assertEquals(786, directions.size());
     }
 
     @Test

@@ -3,7 +3,9 @@ package org.example.puzzles.aoc2023._03dec;
 import org.example.puzzles.aoc2023.utils.ReadTextFile;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
+import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import static java.util.stream.Collectors.toList;
@@ -32,12 +34,13 @@ public class EngineSchematicAnalyser {
     }
 
     /*
-        Reads each line from the text file and returns a list of strings with each string representing a single line of the file
-         */
+        Reads each line from the text file and returns a list of strings with each string representing a single line of the file.
+    */
     public List<String> readFile(String dirName, String fileName){
         ReadTextFile readTextFile = new ReadTextFile();
         return readTextFile.readTextFileFromResources(dirName, fileName);
     }
+
 
     public char[][] initiateEngineSchema(String dirName, String fileName){
         List<String> lines = readFile(dirName, fileName);
@@ -79,6 +82,19 @@ public class EngineSchematicAnalyser {
         return neighbours.stream()
                 .filter(this::isCoordinateValid)
                 .collect(toList());
+    }
+
+    /*
+    Given a line, it will extract the numbers (probable part number) as List of Strings
+     */
+    public List<String> getNumbersFromLine(String line){
+        List<String> numbers = new ArrayList<>();
+        Pattern pattern = Pattern.compile("(\\d+)");
+        Matcher matcher = pattern.matcher(line);
+        while(matcher.find()){
+            numbers.add(matcher.group(1));
+        }
+        return numbers;
     }
 
     public List<String> getEnginePartNumFromRow(int rowNum){

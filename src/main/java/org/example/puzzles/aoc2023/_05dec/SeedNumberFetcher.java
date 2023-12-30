@@ -8,13 +8,23 @@ import java.util.List;
 import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-import java.util.stream.LongStream;
 
 public class SeedNumberFetcher {
-    public List<Long> fetchSeedNumbers(String dirName, String fileName){
+
+    private final Map<Long, Long> seedNumberMap;
+
+    public SeedNumberFetcher(String dirName, String fileName) {
+        this.seedNumberMap = fetchSeedNumbers(dirName, fileName);
+    }
+
+    public Map<Long, Long> getSeedNumberMap() {
+        return seedNumberMap;
+    }
+
+    public Map<Long, Long> fetchSeedNumbers(String dirName, String fileName){
         ReadTextFile readTextFile = new ReadTextFile();
         List<String> strings = readTextFile.readTextFileFromResources(dirName, fileName);
-        List<Long> seedNumbers = new ArrayList<>();
+        Map<Long, Long> seedNumbersStartEndMap = new HashMap<>();
         String seedLine = strings.get(0);   //Gets the line for seed
         String seedNumbersAsStr = seedLine.split(":")[1].trim(); //After trimming, result = "79 14 55 13"
         Pattern pattern = Pattern.compile("(\\d+\\s\\d+)");
@@ -22,7 +32,7 @@ public class SeedNumberFetcher {
         List<String> seedNumbersStr = new ArrayList<>();
         while(matcher.find()){
             seedNumbersStr.add(matcher.group(1));
-            //seedNumbers.add(Long.parseLong(matcher.group(1).trim()));
+            //seedNumbersStartEndMap.add(Long.parseLong(matcher.group(1).trim()));
         }
         System.out.println("seedNumbersStr: " + seedNumbersStr);
         //Map<Long, Long> seedStartToRangeMap = new HashMap<>();
@@ -30,14 +40,9 @@ public class SeedNumberFetcher {
             String[] split = seedNumberWithRange.split("\\s+");
             long seedNumberStart = Long.parseLong(split[0].trim());
             long seedRange = Long.parseLong(split[1].trim());
-            seedNumbers.add(seedNumberStart);
-            for(long i = 1; i < seedRange; i++){
-                seedNumbers.add(seedNumbers.get(seedNumbers.size() - 1) + 1);
-            }
-            //seedStartToRangeMap.put(seedNumberStart, seedRange);
+            seedNumbersStartEndMap.put(seedNumberStart, seedNumberStart + seedRange - 1);
         }
-
-        return seedNumbers;
+        return seedNumbersStartEndMap;
     }
 
     /*
