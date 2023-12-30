@@ -32,6 +32,48 @@ public class MyDoublyLinkedList {
         length++;
     }
 
+
+    /**
+     * Removes the last node (tail) from the list
+     * @return the removed node
+     */
+    @Deprecated
+    public Node removeLast_deprecated(){
+        if(length == 0){
+            return null;
+        }
+        Node lastNode = tail;
+        tail = tail.prev;
+        tail.next = null;
+        lastNode.prev = null;
+        length--;
+        // If the length after decreasing becomes 0 then we need to set head and tail to null
+        if(length == 0){
+            head = null;
+            tail = null;
+        }
+        return lastNode;
+    }
+
+    /**
+     * Removes the last node (tail) from the list
+     * @return the removed node
+     */
+    public Node removeLast() {
+        if(length == 0) return null;
+        Node temp = tail;
+        if (length == 1) {
+            head = null;
+            tail = null;
+        } else {
+            tail = tail.prev;
+            tail.next = null;
+            temp.prev = null;
+        }
+        length--;
+        return temp;
+    }
+
     public boolean clear(){
         head = null;
         tail = null;

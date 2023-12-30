@@ -26,4 +26,24 @@ class MyDoublyLinkedListTest {
         assertNull(myDoublyLinkedList.getTail());
         assertEquals(0, myDoublyLinkedList.getLength());
     }
+
+    @Test
+    void removeLast() {
+        MyDoublyLinkedList myDoublyLinkedList = new MyDoublyLinkedList(1);
+        assertEquals(1, myDoublyLinkedList.removeLast().data);
+        assertNull(myDoublyLinkedList.getHead());
+        assertNull(myDoublyLinkedList.getTail());
+        assertEquals(0, myDoublyLinkedList.getLength());
+    }
+
+    @Test
+    void removeLast_2() {
+        MyDoublyLinkedList myDoublyLinkedList = new MyDoublyLinkedList(1);
+        myDoublyLinkedList.append(2);
+        assertEquals(2, myDoublyLinkedList.removeLast().data);
+        assertEquals(1, myDoublyLinkedList.getHead().data);
+        assertEquals(1, myDoublyLinkedList.getTail().data);
+        assertEquals(1, myDoublyLinkedList.getLength());
+        System.out.println(myDoublyLinkedList.printLinkedList());
+    }
 }
