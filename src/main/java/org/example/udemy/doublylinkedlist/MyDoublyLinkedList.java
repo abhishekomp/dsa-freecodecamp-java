@@ -91,6 +91,24 @@ public class MyDoublyLinkedList {
         length++;
     }
 
+    /**
+     * Removes the first node (head) from the list
+     * @return the first node
+     */
+    public Node removeFirst(){
+        if(length == 0) return null;
+        Node temp = head;
+        if(length == 1){
+            head = null;
+            tail = null;
+        } else {
+            head = head.next;
+            head.prev = null;
+        }
+        length--;
+        return temp;
+    }
+
     public boolean clear(){
         head = null;
         tail = null;

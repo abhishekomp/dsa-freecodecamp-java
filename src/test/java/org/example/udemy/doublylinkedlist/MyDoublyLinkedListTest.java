@@ -70,4 +70,38 @@ class MyDoublyLinkedListTest {
         assertEquals(1, myDoublyLinkedList.getTail().prev.data);
         assertNull(myDoublyLinkedList.getHead().prev);
     }
+
+    @Test
+    void removeFirst() {
+        MyDoublyLinkedList myDoublyLinkedList = new MyDoublyLinkedList(2);
+        assertEquals(2, myDoublyLinkedList.removeFirst().data);
+        assertEquals(0, myDoublyLinkedList.getLength());
+        assertNull(myDoublyLinkedList.getHead());
+        assertNull(myDoublyLinkedList.getTail());
+    }
+
+    @Test
+    void removeFirst_on_empty_list() {
+        MyDoublyLinkedList myDoublyLinkedList = new MyDoublyLinkedList(2);
+        myDoublyLinkedList.clear();
+        assertNull(myDoublyLinkedList.removeFirst());
+        assertEquals(0, myDoublyLinkedList.getLength());
+        assertNull(myDoublyLinkedList.getHead());
+        assertNull(myDoublyLinkedList.getTail());
+    }
+
+    @Test
+    void removeFirst_2() {
+        MyDoublyLinkedList myDoublyLinkedList = new MyDoublyLinkedList(1);
+        myDoublyLinkedList.append(2);
+        myDoublyLinkedList.append(3);
+        myDoublyLinkedList.append(4);
+        myDoublyLinkedList.append(5);
+        assertEquals(5, myDoublyLinkedList.getLength());
+        assertEquals(1, myDoublyLinkedList.removeFirst().data);
+        assertEquals(4, myDoublyLinkedList.getLength());
+        assertEquals(2, myDoublyLinkedList.getHead().data);
+        assertNull(myDoublyLinkedList.getHead().prev);
+        assertEquals(5, myDoublyLinkedList.getTail().data);
+    }
 }
