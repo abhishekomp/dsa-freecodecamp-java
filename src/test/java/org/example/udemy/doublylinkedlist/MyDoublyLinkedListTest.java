@@ -46,4 +46,16 @@ class MyDoublyLinkedListTest {
         assertEquals(1, myDoublyLinkedList.getLength());
         System.out.println(myDoublyLinkedList.printLinkedList());
     }
+
+    @Test
+    void removeLast_on_empty_list() {
+        MyDoublyLinkedList myDoublyLinkedList = new MyDoublyLinkedList(1);
+        myDoublyLinkedList.append(2);
+        myDoublyLinkedList.clear();
+        assertNull(myDoublyLinkedList.removeLast());
+        assertNull(myDoublyLinkedList.getHead());
+        assertNull(myDoublyLinkedList.getTail());
+        assertEquals(0, myDoublyLinkedList.getLength());
+        System.out.println(myDoublyLinkedList.printLinkedList());
+    }
 }
