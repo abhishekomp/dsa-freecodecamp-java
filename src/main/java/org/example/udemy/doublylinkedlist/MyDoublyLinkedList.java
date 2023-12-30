@@ -12,6 +12,31 @@ public class MyDoublyLinkedList {
         Node newNode = new Node(data);
         head = newNode;
         tail = newNode;
+        length = 1;
+    }
+
+    /**
+     * Appends a new node to the list
+     * @param data the node data
+     */
+    public void append(int data){
+        Node newNode = new Node(data);
+        if(head == null){
+            head = newNode;
+        } else {
+            tail.next = newNode;
+            newNode.prev = tail;
+
+        }
+        tail = newNode;
+        length++;
+    }
+
+    public boolean clear(){
+        head = null;
+        tail = null;
+        length = 0;
+        return true;
     }
 
     public String printLinkedList() {
@@ -52,4 +77,17 @@ public class MyDoublyLinkedList {
     public void printLength(){
         System.out.println("Length: " + length);
     }
+
+    public Node getHead(){
+        return head;
+    }
+
+    public Node getTail(){
+        return tail;
+    }
+
+    public int getLength(){
+        return length;
+    }
+
 }
