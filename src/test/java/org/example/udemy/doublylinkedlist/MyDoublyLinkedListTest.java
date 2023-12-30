@@ -58,4 +58,16 @@ class MyDoublyLinkedListTest {
         assertEquals(0, myDoublyLinkedList.getLength());
         System.out.println(myDoublyLinkedList.printLinkedList());
     }
+
+    @Test
+    void prepend() {
+        MyDoublyLinkedList myDoublyLinkedList = new MyDoublyLinkedList(2);
+        myDoublyLinkedList.prepend(1);
+        assertEquals(1, myDoublyLinkedList.getHead().data);
+        assertEquals(2, myDoublyLinkedList.getTail().data);
+        assertEquals(2, myDoublyLinkedList.getLength());
+        assertEquals(2, myDoublyLinkedList.getHead().next.data);
+        assertEquals(1, myDoublyLinkedList.getTail().prev.data);
+        assertNull(myDoublyLinkedList.getHead().prev);
+    }
 }

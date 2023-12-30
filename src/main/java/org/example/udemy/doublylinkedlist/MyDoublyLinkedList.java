@@ -74,6 +74,23 @@ public class MyDoublyLinkedList {
         return temp;
     }
 
+    /**
+     * Prepends a new node to the list
+     * @param data the node's data
+     */
+    public void prepend(int data){
+        Node newNode = new Node(data);
+        if(length == 0){
+            head = newNode;
+            tail = newNode;
+        } else {
+            newNode.next = head;
+            head.prev = newNode;
+            head = newNode;
+        }
+        length++;
+    }
+
     public boolean clear(){
         head = null;
         tail = null;
