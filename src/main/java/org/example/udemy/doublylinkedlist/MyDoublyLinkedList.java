@@ -131,6 +131,21 @@ public class MyDoublyLinkedList {
         return temp;
     }
 
+    /**
+     * Updates the value at the specified index
+     * @param index the specified index
+     * @param data the data to update at the index
+     * @return true if successful else false
+     */
+    public boolean set(int index, int data){
+        Node temp = get(index);
+        if(temp != null){
+            temp.data = data;
+            return true;
+        }
+        return false;
+    }
+
     public boolean clear(){
         head = null;
         tail = null;

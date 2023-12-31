@@ -116,4 +116,18 @@ class MyDoublyLinkedListTest {
         assertEquals(2, myDoublyLinkedList.get(1).data);
         assertNull(myDoublyLinkedList.get(-1));
     }
+
+    @Test
+    void set() {
+        MyDoublyLinkedList myDoublyLinkedList = new MyDoublyLinkedList(1);
+        myDoublyLinkedList.append(2);
+        myDoublyLinkedList.append(3);
+        myDoublyLinkedList.append(4);
+        myDoublyLinkedList.append(5);
+        assertTrue(myDoublyLinkedList.set(1, 10));
+        assertEquals(10, myDoublyLinkedList.get(1).data);
+        assertFalse(myDoublyLinkedList.set(10, 10));
+        System.out.println(myDoublyLinkedList.printLinkedList());
+        assertEquals("1->10->3->4->5", myDoublyLinkedList.toString());
+    }
 }
