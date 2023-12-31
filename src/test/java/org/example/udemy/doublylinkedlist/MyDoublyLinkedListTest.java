@@ -145,6 +145,7 @@ class MyDoublyLinkedListTest {
         assertTrue(myDoublyLinkedList.insertAt(6, 200));
         assertEquals(100, myDoublyLinkedList.getHead().data);
         assertEquals(200, myDoublyLinkedList.getTail().data);
+        assertEquals(7, myDoublyLinkedList.getLength());
         assertEquals("100->1->2->3->4->5->200", myDoublyLinkedList.toString());
     }
 }

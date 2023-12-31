@@ -173,6 +173,7 @@ public class MyDoublyLinkedList {
         newNode.prev = before;
         newNode.next = after;
         after.prev = newNode;
+        length++;
         return true;
     }
 
