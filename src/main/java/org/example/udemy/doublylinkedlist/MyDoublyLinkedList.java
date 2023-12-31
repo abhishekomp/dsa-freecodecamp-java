@@ -104,6 +104,7 @@ public class MyDoublyLinkedList {
         } else {
             head = head.next;
             head.prev = null;
+            temp.next = null;
         }
         length--;
         return temp;
