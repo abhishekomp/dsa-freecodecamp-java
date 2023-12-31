@@ -146,6 +146,36 @@ public class MyDoublyLinkedList {
         return false;
     }
 
+    /**
+     * Insert a new node at the specified index
+     * @param index the specified index
+     * @param data the data to insert
+     * @return true if successful else false
+     */
+    public boolean insertAt(int index, int data){
+        // We cannot insert a new node at index less than 0 or at index greater than the length.
+        // At index = length we can insert a node, and it will be then the new tail.
+        if(index < 0 || index > length){
+            return false;
+        }
+        if(index == 0){
+            prepend(data);
+            return true;
+        }
+        if(index == length){
+            append(data);
+            return true;
+        }
+        Node newNode = new Node(data);
+        Node before = get(index - 1);
+        Node after = before.next;
+        before.next = newNode;
+        newNode.prev = before;
+        newNode.next = after;
+        after.prev = newNode;
+        return true;
+    }
+
     public boolean clear(){
         head = null;
         tail = null;
