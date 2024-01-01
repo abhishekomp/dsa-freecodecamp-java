@@ -148,4 +148,22 @@ class MyDoublyLinkedListTest {
         assertEquals(7, myDoublyLinkedList.getLength());
         assertEquals("100->1->2->3->4->5->200", myDoublyLinkedList.toString());
     }
+
+    @Test
+    void remove() {
+        MyDoublyLinkedList myDoublyLinkedList = new MyDoublyLinkedList(1);
+        myDoublyLinkedList.append(2);
+        myDoublyLinkedList.append(3);
+        myDoublyLinkedList.append(4);
+        myDoublyLinkedList.append(5);
+        assertNull(myDoublyLinkedList.remove(-1));
+        assertNull(myDoublyLinkedList.remove(5));
+        assertNull(myDoublyLinkedList.remove(10));
+        assertEquals(1, myDoublyLinkedList.remove(0).data);
+        assertEquals(5, myDoublyLinkedList.remove(3).data);
+        assertEquals(3, myDoublyLinkedList.remove(1).data);
+        assertEquals(2, myDoublyLinkedList.getLength());
+        assertEquals(2, myDoublyLinkedList.getHead().data);
+        assertEquals(4, myDoublyLinkedList.getTail().data);
+    }
 }
