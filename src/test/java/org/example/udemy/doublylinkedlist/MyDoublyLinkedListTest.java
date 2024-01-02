@@ -166,4 +166,38 @@ class MyDoublyLinkedListTest {
         assertEquals(2, myDoublyLinkedList.getHead().data);
         assertEquals(4, myDoublyLinkedList.getTail().data);
     }
+
+    @Test
+    void swapFirstLast() {
+        MyDoublyLinkedList myDoublyLinkedList = new MyDoublyLinkedList(1);
+        myDoublyLinkedList.append(2);
+        myDoublyLinkedList.append(3);
+        myDoublyLinkedList.append(4);
+        myDoublyLinkedList.append(5);
+        assertEquals(1, myDoublyLinkedList.getHead().data);
+        assertEquals(5, myDoublyLinkedList.getTail().data);
+        myDoublyLinkedList.swapFirstLast();
+        assertEquals(5, myDoublyLinkedList.getHead().data);
+        assertEquals(1, myDoublyLinkedList.getTail().data);
+    }
+
+    @Test
+    void swapFirstLast_2() {
+        MyDoublyLinkedList myDoublyLinkedList = new MyDoublyLinkedList(1);
+        myDoublyLinkedList.append(2);
+        assertEquals(1, myDoublyLinkedList.getHead().data);
+        assertEquals(2, myDoublyLinkedList.getTail().data);
+        myDoublyLinkedList.swapFirstLast();
+        assertEquals(2, myDoublyLinkedList.getHead().data);
+        assertEquals(1, myDoublyLinkedList.getTail().data);
+    }
+
+    @Test
+    void swapFirstLast_3() {
+        MyDoublyLinkedList myDoublyLinkedList = new MyDoublyLinkedList(1);
+        assertEquals(1, myDoublyLinkedList.getHead().data);
+        myDoublyLinkedList.swapFirstLast();
+        assertEquals(1, myDoublyLinkedList.getHead().data);
+        assertEquals(1, myDoublyLinkedList.getTail().data);
+    }
 }

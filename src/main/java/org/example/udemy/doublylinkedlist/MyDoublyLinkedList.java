@@ -210,6 +210,14 @@ public class MyDoublyLinkedList {
         return true;
     }
 
+    public void swapFirstLast(){
+        if(length >= 2){
+            int temp = head.data;
+            head.data = tail.data;
+            tail.data = temp;
+        }
+    }
+
     public String printLinkedList() {
         Node temp = head;
         List<String> strings = new ArrayList<>();
