@@ -210,11 +210,31 @@ public class MyDoublyLinkedList {
         return true;
     }
 
+    /**
+     * Swaps the value of first and last entry of the list
+     */
     public void swapFirstLast(){
         if(length >= 2){
             int temp = head.data;
             head.data = tail.data;
             tail.data = temp;
+        }
+    }
+
+    /**
+     * Reverses the doubly linked list
+     * https://stackoverflow.com/questions/11166968/reversing-a-doubly-linked-list
+     */
+    public void reverse(){
+        Node temp = head;
+        head = tail;
+        tail = temp;
+        Node p = head;
+        while(p != null){
+            temp = p.next;
+            p.next = p.prev;
+            p.prev = temp;
+            p = p.next;
         }
     }
 
@@ -225,7 +245,7 @@ public class MyDoublyLinkedList {
             strings.add(""+temp.data);
             temp = temp.next;
         }
-        System.out.print("\nLinked List:");
+        //System.out.print("\nLinked List:");
         //System.out.println(String.join("->", strings));
         return String.join("->", strings);
     }

@@ -200,4 +200,32 @@ class MyDoublyLinkedListTest {
         assertEquals(1, myDoublyLinkedList.getHead().data);
         assertEquals(1, myDoublyLinkedList.getTail().data);
     }
+
+    @Test
+    void reverse() {
+        MyDoublyLinkedList myDoublyLinkedList = new MyDoublyLinkedList(1);
+        myDoublyLinkedList.append(2);
+        System.out.println(myDoublyLinkedList.printLinkedList());
+        myDoublyLinkedList.reverse();
+        System.out.println(myDoublyLinkedList.printLinkedList());
+    }
+
+    @Test
+    void reverse_2() {
+        MyDoublyLinkedList myDoublyLinkedList = new MyDoublyLinkedList(1);
+        myDoublyLinkedList.append(2);
+        myDoublyLinkedList.append(3);
+        myDoublyLinkedList.append(4);
+        myDoublyLinkedList.append(5);
+        System.out.println(myDoublyLinkedList.printLinkedList());
+        assertEquals("1->2->3->4->5", myDoublyLinkedList.printLinkedList());
+
+        myDoublyLinkedList.reverse();
+        System.out.println(myDoublyLinkedList.printLinkedList());
+        assertEquals("5->4->3->2->1", myDoublyLinkedList.printLinkedList());
+        assertEquals(5, myDoublyLinkedList.getHead().data);
+        assertNull(myDoublyLinkedList.getHead().prev);
+        assertNull(myDoublyLinkedList.getTail().next);
+        assertEquals(1, myDoublyLinkedList.getTail().data);
+    }
 }
