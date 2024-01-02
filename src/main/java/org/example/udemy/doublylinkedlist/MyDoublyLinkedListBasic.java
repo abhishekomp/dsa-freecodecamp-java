@@ -14,6 +14,23 @@ public class MyDoublyLinkedListBasic {
         tail = newNode;
     }
 
+    /**
+     * Appends a new node to the list
+     * @param data the node data
+     */
+    public void append(int data){
+        Node newNode = new Node(data);
+        if(head == null){
+            head = newNode;
+        } else {
+            tail.next = newNode;
+            newNode.prev = tail;
+
+        }
+        tail = newNode;
+        length++;
+    }
+
     public String printLinkedList() {
         Node temp = head;
         List<String> strings = new ArrayList<>();
@@ -51,5 +68,17 @@ public class MyDoublyLinkedListBasic {
 
     public void printLength(){
         System.out.println("Length: " + length);
+    }
+
+    public Node getHead(){
+        return head;
+    }
+
+    public Node getTail(){
+        return tail;
+    }
+
+    public int getLength(){
+        return length;
     }
 }
