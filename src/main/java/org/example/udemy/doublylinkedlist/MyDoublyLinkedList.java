@@ -238,6 +238,52 @@ public class MyDoublyLinkedList {
         }
     }
 
+    /**
+     * Given the head node, this method reverses the linked list and returns the head of the reversed list.
+     * @param head the given head
+     * @return head of the reversed list
+     */
+    public Node reverse(Node head){
+        Node prev = null;
+        while(head != null) {
+            Node temp = head.next;
+            head.next = prev;
+            prev = head;
+            head = temp;
+        }
+        return prev;
+    }
+
+    /**
+     * Checks if the linked list is a palindrome
+     * @return true if yes else false
+     */
+    public boolean isPalindrome(){
+        // Finding the mid-node
+        // With the slow and fast pointer method of finding the mid of the list,
+        // fast will be non-null (fast.next becomes null) when list has got odd number of elements while
+        // fast becomes null when the list has got even number of elements.
+        Node slow = head;
+        Node fast = head;
+        while(fast != null && fast.next != null){
+            slow = slow.next;
+            fast = fast.next.next;
+        }
+        if(fast != null){   //when list has odd number of elements
+            slow = slow.next;
+        }
+        slow = reverse(slow);
+        fast = head;
+        while(slow != null){
+            if(slow.data != fast.data){
+                return false;
+            }
+            slow = slow.next;
+            fast = fast.next;
+        }
+        return true;
+    }
+
     public String printLinkedList() {
         Node temp = head;
         List<String> strings = new ArrayList<>();

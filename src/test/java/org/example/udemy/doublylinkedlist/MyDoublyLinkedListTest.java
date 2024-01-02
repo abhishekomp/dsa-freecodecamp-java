@@ -206,8 +206,19 @@ class MyDoublyLinkedListTest {
         MyDoublyLinkedList myDoublyLinkedList = new MyDoublyLinkedList(1);
         myDoublyLinkedList.append(2);
         System.out.println(myDoublyLinkedList.printLinkedList());
+        assertEquals("1->2", myDoublyLinkedList.printLinkedList());
+        assertEquals(1, myDoublyLinkedList.getHead().data);
+        assertNull(myDoublyLinkedList.getHead().prev);
+        assertNull(myDoublyLinkedList.getTail().next);
+        assertEquals(2, myDoublyLinkedList.getTail().data);
+
         myDoublyLinkedList.reverse();
         System.out.println(myDoublyLinkedList.printLinkedList());
+        assertEquals("2->1", myDoublyLinkedList.printLinkedList());
+        assertEquals(2, myDoublyLinkedList.getHead().data);
+        assertNull(myDoublyLinkedList.getHead().prev);
+        assertNull(myDoublyLinkedList.getTail().next);
+        assertEquals(1, myDoublyLinkedList.getTail().data);
     }
 
     @Test
@@ -227,5 +238,51 @@ class MyDoublyLinkedListTest {
         assertNull(myDoublyLinkedList.getHead().prev);
         assertNull(myDoublyLinkedList.getTail().next);
         assertEquals(1, myDoublyLinkedList.getTail().data);
+    }
+
+    @Test
+    void isPalindrome() {
+        // With slow and fast pointer method of finding the mid of the list,
+        // fast.next becomes null when list has got odd number of elements while
+        // fast becomes null when the list has got even number of elements.
+        MyDoublyLinkedList myDoublyLinkedList = new MyDoublyLinkedList(1);
+        myDoublyLinkedList.append(2);
+        myDoublyLinkedList.append(3);
+        myDoublyLinkedList.append(8);
+        myDoublyLinkedList.append(1);
+        myDoublyLinkedList.append(6);
+        System.out.println(myDoublyLinkedList.isPalindrome());
+    }
+
+    @Test
+    void isPalindrome_even_number_of_nodes() {
+        MyDoublyLinkedList myDoublyLinkedList = new MyDoublyLinkedList(1);
+        myDoublyLinkedList.append(2);
+        myDoublyLinkedList.append(3);
+        myDoublyLinkedList.append(3);
+        myDoublyLinkedList.append(2);
+        myDoublyLinkedList.append(1);
+        System.out.println(myDoublyLinkedList.isPalindrome());
+    }
+
+    @Test
+    void isPalindrome_odd_number_of_nodes() {
+        MyDoublyLinkedList myDoublyLinkedList = new MyDoublyLinkedList(1);
+        myDoublyLinkedList.append(2);
+        myDoublyLinkedList.append(3);
+        myDoublyLinkedList.append(2);
+        myDoublyLinkedList.append(1);
+        System.out.println(myDoublyLinkedList.isPalindrome());
+    }
+
+    @Test
+    void testReverse_by_giving_the_node() {
+        MyDoublyLinkedList myDoublyLinkedList = new MyDoublyLinkedList(1);
+        myDoublyLinkedList.append(2);
+        myDoublyLinkedList.append(3);
+        myDoublyLinkedList.append(8);
+        MyDoublyLinkedList.Node reverse = myDoublyLinkedList.reverse(myDoublyLinkedList.get(2));
+        System.out.println(reverse.data);
+        System.out.println(reverse.next.data);
     }
 }
