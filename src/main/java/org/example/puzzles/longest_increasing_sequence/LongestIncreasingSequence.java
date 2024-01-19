@@ -4,6 +4,7 @@ import java.util.Arrays;
 
 /**
  * https://leetcode.com/problems/longest-increasing-subsequence/description/
+ * LeetCode 300
  */
 public class LongestIncreasingSequence {
     public int longestIncreasingSequenceLength(int[] input){
@@ -29,8 +30,10 @@ public class LongestIncreasingSequence {
                 j++;
             }
         }
-        return Arrays.stream(memoizedArr)
-                .max()
-                .getAsInt();
+//        return Arrays.stream(memoizedArr)
+//                .max()
+//                .getAsInt();
+        Arrays.sort(memoizedArr);
+        return memoizedArr[memoizedArr.length - 1];
     }
 }
