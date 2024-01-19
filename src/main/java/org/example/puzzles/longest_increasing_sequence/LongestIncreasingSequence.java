@@ -36,4 +36,12 @@ public class LongestIncreasingSequence {
         Arrays.sort(memoizedArr);
         return memoizedArr[memoizedArr.length - 1];
     }
+
+    public static void main(String[] args) {
+        LongestIncreasingSequence longestIncreasingSequence = new LongestIncreasingSequence();
+        int[] input = {2, 1, 5, 0, 4, 6};
+        int sequenceLength = longestIncreasingSequence.longestIncreasingSequenceLength(input);
+        // LeetCode 334: https://leetcode.com/problems/increasing-triplet-subsequence/description/
+        System.out.println(sequenceLength >= 3);
+    }
 }
