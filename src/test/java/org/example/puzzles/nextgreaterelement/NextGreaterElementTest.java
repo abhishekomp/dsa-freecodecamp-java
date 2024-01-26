@@ -39,4 +39,15 @@ class NextGreaterElementTest {
         int[] expectedNextGreaterElements = {3, -1};
         assertArrayEquals(expectedNextGreaterElements, nextGreaterElements);
     }
+
+    //
+    @Test
+    void nextGreaterElements_3() {
+        //int[] nums1 = {2, 4};
+        int[] nums2 = {73,74,75,71,69,72,76,73};
+        int[] nextGreaterElements = nextGreaterElement.nextGreaterElements(nums2);
+        System.out.println(Arrays.toString(nextGreaterElements));
+        int[] expectedNextGreaterElements = {74, 75, 76, 72, 72, 76, -1, -1};
+        assertArrayEquals(expectedNextGreaterElements, nextGreaterElements);
+    }
 }
