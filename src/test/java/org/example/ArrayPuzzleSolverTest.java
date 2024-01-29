@@ -62,4 +62,38 @@ class ArrayPuzzleSolverTest {
         String expectedString = "Not found";
         assertEquals(expectedString, resultString);
     }
+
+//    @Test
+//    void shortestSubArrayWithGivenSum() {
+//        int[] input = {10, 20, 30, 40};
+//        int expectedSum = 30;
+//        String resultString = arrayPuzzleSolver.shortestSubArrayWithGivenSum(input, expectedSum);
+//        String expectedString = "Sub-Array found with start index: 2 end: 2";
+//        assertEquals(expectedString, resultString);
+//    }
+
+    @Test
+    void sumOfAllSubArraysOfGivenLength() {
+        int[] input = {10, 20, 30, 40};
+        int sum = arrayPuzzleSolver.sumOfAllSubArraysOfGivenLength(input, 3);
+        System.out.println(sum);
+        assertEquals(150, sum);
+    }
+
+    @Test
+    void sumOfAllSubArraysOfGivenLength_2() {
+        int[] input = {10, 20, 30, 40, -50};
+        int sum = arrayPuzzleSolver.sumOfAllSubArraysOfGivenLength(input, 4);
+        System.out.println(sum);
+        assertEquals(140, sum);
+    }
+
+    @Test
+    void sumOfAllSubArraysOfGivenLength_3() {
+        int[] input = {-10, 20, 30, 40};
+        int sum = arrayPuzzleSolver.sumOfAllSubArraysOfGivenLength(input, 3);
+        System.out.println(sum);
+        assertEquals(130, sum);
+    }
+
 }
