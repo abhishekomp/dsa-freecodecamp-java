@@ -9,7 +9,8 @@ import java.util.Map;
  **/
 public class ArrayPuzzleSolver {
     /**
-     * Finds the sub-array with specified sum
+     * Finds the sub-array with specified sum. Uses the HashMap to solve this.
+     * This is not sliding window approach.
      * @param input input array of integers
      * @param sum specified sum
      */
@@ -67,6 +68,7 @@ public class ArrayPuzzleSolver {
         }
         //System.out.println("Initial sub-array sum: " + totalSum);
         right = right + 1;
+        // Slide the window to the right and keep removing the left element and adding the right element
         while(right < input.length){
             int currentSum = totalSum - input[left] + input[right];
             //System.out.println("Temp Sum: " + currentSum);
@@ -108,5 +110,20 @@ public class ArrayPuzzleSolver {
             //resultString = "Sub-Array found with length: " + arrLen;
         }
         return arrLen;
+    }
+
+    /**
+     * Finds the sub-array that has the maximum sum using Kadane's algorithm.
+     * @param input input array
+     * @return the sum of the sub-array.
+     */
+    public int maximumSumSubArray(int[] input){
+        int current_max = input[0];
+        int global_max  = input[0];
+        for(int i = 1; i < input.length; i++){
+            current_max = Math.max(input[i], current_max + input[i]);
+            global_max = Math.max(current_max, global_max);
+        }
+        return global_max;
     }
 }

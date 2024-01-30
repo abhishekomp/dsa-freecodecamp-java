@@ -96,4 +96,38 @@ class ArrayPuzzleSolverTest {
         assertEquals(130, sum);
     }
 
+    @Test
+    void maximumSumSubArray() {
+        int[] input = {-2, 3, 2, -1};
+        int maxSum = arrayPuzzleSolver.maximumSumSubArray(input);
+        assertEquals(5, maxSum);
+    }
+
+    @Test
+    void maximumSumSubArray_2() {
+        int[] input =  {-2, -3, 4, -1, -2, 1, 5, -3};
+        int maxSum = arrayPuzzleSolver.maximumSumSubArray(input);
+        assertEquals(7, maxSum);
+    }
+
+    @Test
+    void maximumSumSubArray_3() {
+        int[] input =  {-2, 1, -3, 4, -1, 2, 1, -5, 4};
+        int maxSum = arrayPuzzleSolver.maximumSumSubArray(input);
+        assertEquals(6, maxSum);
+    }
+
+    @Test
+    void maximumSumSubArray_4() {
+        int[] input =  {1};
+        int maxSum = arrayPuzzleSolver.maximumSumSubArray(input);
+        assertEquals(1, maxSum);
+    }
+
+    @Test
+    void maximumSumSubArray_5() {
+        int[] input =  {5, 4, -1, 7, 8};
+        int maxSum = arrayPuzzleSolver.maximumSumSubArray(input);
+        assertEquals(23, maxSum);
+    }
 }
